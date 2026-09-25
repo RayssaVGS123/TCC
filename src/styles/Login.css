@@ -1,0 +1,116 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FUNDO DA PÁGINA */
+body {
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+/* CAIXA DO LOGIN */
+form {
+    width: 380px;
+
+    padding: 40px;
+
+    background: rgba(255, 255, 255, 0.97);
+
+    border-radius: 20px;
+
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+.login-page{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label {
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    color: #333;
+}
+
+/* CAMPOS */
+input {
+    width: 100%;
+
+    padding: 13px 15px;
+
+    margin-bottom: 18px;
+
+    border: 2px solid #e0e0e0;
+
+    border-radius: 10px;
+
+    outline: none;
+
+    font-size: 15px;
+
+    transition: 0.3s;
+}
+
+/* QUANDO CLICAR NO INPUT */
+input:focus {
+    border-color: #4d0404;
+
+    box-shadow: 0 0 0 3px rgba(157, 78, 221, 0.15);
+}
+
+/* BOTÃO */
+button {
+    width: 100%;
+
+    padding: 13px;
+
+    margin-top: 5px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: #4d0404;
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #960303;
+    box-shadow: 0 6px 15px rgba(123, 44, 191, 0.3);
+}
+
+p {
+    margin-top: 20px;
+
+    text-align: center;
+
+    color: #555;
+
+    font-size: 14px;
+}

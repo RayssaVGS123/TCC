@@ -1,0 +1,12 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+footer{
+    text-align: center;
+    padding: 30px;
+    background-color: rgb(37, 33, 33);
+    margin-top: 25px;
+}
