@@ -1,17 +1,20 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home"
-import Login from "./pages/Login"
+import { useState } from 'react'
+import PaginaInicial from './pages/PaginaInicial.jsx'
+import Login from './pages/Login.jsx'
+import './App.css'
+
 function App() {
+  const [paginaAtual, setPaginaAtual] = useState('login')
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        {/* <Route path="/dashboard" element={<Dashboard />} /> */}
-      </Routes>
-    </BrowserRouter>
-  );
+    <div className="App">
+      {paginaAtual === 'login' ? (
+        <Login onLogin={() => setPaginaAtual('home')} />
+      ) : (
+        <PaginaInicial />
+      )}
+    </div>
+  )
 }
 
 export default App

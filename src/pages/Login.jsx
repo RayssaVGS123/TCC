@@ -1,60 +1,23 @@
+import { useState } from 'react'
+import CabecalhoMacOSCard from '../componentes/CabecalhoMacOSCard.jsx'
+import FormularioLogin from '../componentes/FormularioLogin.jsx'
+import FormularioCadastro from '../componentes/FormularioCadastro.jsx'
+import PainelDeslizanteTransicao from '../componentes/PainelDeslizanteTransicao.jsx'
 
-import "../styles/Login.css";
+function Login({ onLogin }) {
+  const [isCadastro, setIsCadastro] = useState(false)
 
-function Login() {
-    return (
-        <div className="login-page">
-
-            <div className="login-card">
-
-                
-
-                <p className="subtitulo">
-                    Entre na sua conta
-                </p>
-
-                <form>
-
-                    <div className="campo">
-                        <label htmlFor="email">
-                            E-mail
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Digite seu e-mail"
-                        />
-                    </div>
-
-                    <div className="campo">
-                        <label htmlFor="senha">
-                            Senha
-                        </label>
-
-                        <input
-                            type="password"
-                            id="senha"
-                            placeholder="Digite sua senha"
-                        />
-                    </div>
-
-                    <button type="submit">
-                        Entrar
-                    </button>
-
-                </form>
-
-                <p className="cadastro">
-                    Ainda não possui uma conta?
-                    <a href="#"> Criar conta</a>
-                </p>
-
-            </div>
-
-        </div>
-    );
+  return (
+    <div className={`container${isCadastro ? ' active' : ''}`}>
+      <CabecalhoMacOSCard />
+      <FormularioLogin onLogin={onLogin} />
+      <FormularioCadastro />
+      <PainelDeslizanteTransicao
+        onShowCadastro={() => setIsCadastro(true)}
+        onShowLogin={() => setIsCadastro(false)}
+      />
+    </div>
+  )
 }
 
-export default Login;
-
+export default Login
