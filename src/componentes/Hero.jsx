@@ -1,14 +1,31 @@
+import { useEffect, useState } from 'react'
 import fundo from '../assets/fundo.jpg'
 import fundo2 from '../assets/fundo2.jpg'
 import fundo3 from '../assets/fundo3.jpg'
 import '../styles/Hero.css';
 
+const fundos = [fundo, fundo2, fundo3]
+
 function Hero() {
+    const [indice, setIndice] = useState(0)
+
+    // troca o fundo a cada 5 segundos
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            setIndice((atual) => (atual + 1) % fundos.length)
+        }, 5000)
+        return () => clearInterval(intervalo)
+    }, [])
+
     return (
     <section className="hero">
-            <div className="bg ativo" style={{ backgroundImage: `url(${fundo})` }}></div>
-            <div className="bg" style={{ backgroundImage: `url(${fundo2})` }}></div>
-            <div className="bg" style={{ backgroundImage: `url(${fundo3})` }}></div>
+            {fundos.map((imagem, i) => (
+                <div
+                    key={i}
+                    className={`bg${i === indice ? ' ativo' : ''}`}
+                    style={{ backgroundImage: `url(${imagem})` }}
+                ></div>
+            ))}
       <div className="hero-overlay"></div>
 
 

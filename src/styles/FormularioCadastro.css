@@ -124,3 +124,5 @@ input:focus, .select-perfil:focus {
   background: var(--primary-hover);
 }
 
+.msg-erro { color: #d93025; font-size: 14px; margin-bottom: 10px; }
+.msg-sucesso { color: #188038; font-size: 14px; margin-bottom: 10px; }
