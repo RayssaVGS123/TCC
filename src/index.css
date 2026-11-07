@@ -36,24 +36,22 @@
 body {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   min-height: 100vh;
   background: var(--bg-body);
   color: var(--text-main);
   position: relative;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 
 #root {
-  width: 2260px;
+  width: 100%;
   max-width: 100%;
   margin: 0 auto;
-  text-align: center;
   border-inline: 1px solid var(--border);
   min-height: 100svh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   box-sizing: border-box;
 }
 

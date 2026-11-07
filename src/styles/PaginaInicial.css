@@ -101,3 +101,76 @@
     font-size: 1.75rem;
   }
 }
+.pagina-aplicacao {
+  min-height: 100vh;
+}
+
+.navbar-principal {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  left: 0;
+  display: flex;
+  width: 100%;
+  min-height: 76px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(20px, 6vw, 80px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(9, 10, 15, 0.7);
+  backdrop-filter: blur(14px);
+}
+
+.navbar-marca {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+}
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navbar-links button {
+  padding: 10px 15px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: transparent;
+  color: #e5e7eb;
+  font: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.navbar-links button:hover,
+.navbar-links button.ativo {
+  background: rgba(255, 122, 0, 0.16);
+  color: #ff9b45;
+}
+
+.navbar-links button:focus-visible,
+.navbar-marca:focus-visible {
+  outline: 2px solid #ff9b45;
+  outline-offset: 3px;
+}
+
+@media (max-width: 520px) {
+  .navbar-principal {
+    min-height: 68px;
+    padding-inline: 16px;
+    gap: 8px;
+  }
+
+  .navbar-links {
+    gap: 2px;
+  }
+
+  .navbar-links button {
+    padding: 9px;
+    font-size: 0.9rem;
+  }
+}

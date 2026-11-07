@@ -1,4 +1,4 @@
-import '../styles/CardUniversidade.css'
+import '../styles/CardUniversidades.css'
 
 function CardUniversidade({ universidade, favoritada, onFavoritar }) {
   return (
@@ -21,7 +21,7 @@ function CardUniversidade({ universidade, favoritada, onFavoritar }) {
           {favoritada ? '♥' : '♡'}
         </button>
       </div>
-      <div className="card-conteudo">
+      <div className="universidade-conteudo">
         <span className="universidade-pais">{universidade.pais}</span>
         <h2>{universidade.nome}</h2>
         <p>{universidade.descricao}</p>

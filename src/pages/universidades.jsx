@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import CardUniversidade from '../componentes/CardUniversidade'
+import CardUniversidade from '../componentes/CardUniversidades.jsx'
 import { useLocalStorage } from '../hooks/useLocalStorage'
 import '../styles/Universidades.css'
 

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
+import { entrarComGoogle } from '../services/firebaseAuth.js'
 import '../styles/FormularioLogin.css';
 
 function FormularioLogin({ onLogin }) {
@@ -30,6 +31,30 @@ function FormularioLogin({ onLogin }) {
             onLogin();
         } catch (e) {
             setErro(e.message || 'Não foi possível entrar. Tente novamente.');
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    async function aoEntrarComGoogle() {
+        setErro('');
+        setCarregando(true);
+
+        try {
+            await entrarComGoogle();
+            onLogin();
+        } catch (e) {
+            const mensagens = {
+                'firebase/config-missing': e.message,
+                'auth/unauthorized-domain': 'Este domínio não está autorizado no Firebase Authentication.',
+                'auth/operation-not-allowed': 'Ative o provedor Google em Authentication > Sign-in method no Firebase.',
+                'auth/popup-blocked': 'O navegador bloqueou a janela de login. Permita pop-ups e tente novamente.',
+                'auth/popup-closed-by-user': 'A janela de login foi fechada antes da conclusão.',
+                'auth/cancelled-popup-request': 'Já existe uma solicitação de login aberta.',
+                'auth/network-request-failed': 'Falha de conexão. Verifique a internet e tente novamente.',
+                'auth/invalid-api-key': 'A chave da API do Firebase está inválida. Confira o arquivo .env.local.'
+            };
+            setErro(mensagens[e.code] || 'Não foi possível entrar com Google. Verifique a configuração do Firebase.');
         } finally {
             setCarregando(false);
         }
@@ -81,8 +106,8 @@ function FormularioLogin({ onLogin }) {
                     </div>
 
                     <div className="social-login">
-                        <button type="button" className="btn-social">
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google"/> Google
+                        <button type="button" className="btn-social" onClick={aoEntrarComGoogle} disabled={carregando}>
+                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt=""/> {carregando ? 'Conectando...' : 'Google'}
                         </button>
                         <button type="button" className="btn-social">
                             <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub"/> GitHub
