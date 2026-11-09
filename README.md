@@ -2,6 +2,10 @@
 
 Aplicação React com Vite. Cadastro e login usam Supabase Auth; os dados ficam no PostgreSQL do Supabase.
 
+## Configuração da apresentação
+
+O arquivo `.env.production` já aponta para o projeto Supabase informado pela equipe. Ele contém apenas a URL e a chave pública, próprias para uso no navegador. As políticas do banco continuam obrigatórias. Para usar outro projeto, configure as variáveis na hospedagem ou substitua esse arquivo com os dados públicos do novo projeto.
+
 ## Configurar o Supabase
 
 1. Crie um projeto em https://supabase.com/dashboard. Guarde a senha do banco em local privado.
