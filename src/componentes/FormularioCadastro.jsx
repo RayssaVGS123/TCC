@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { cadastrar } from '../services/authService';
+import { mensagemErro } from '../lib/supabase';
 import '../styles/FormularioCadastro.css';
 
 const dadosVazios = { nome: '', email: '', perfil: '', senha: '' };
@@ -6,25 +8,33 @@ const dadosVazios = { nome: '', email: '', perfil: '', senha: '' };
 function FormularioCadastro() {
     const [dados, setDados] = useState(dadosVazios);
     const [erro, setErro] = useState('');
-    const [sucesso, setSucesso] = useState(false);
+    const [sucesso, setSucesso] = useState('');
+    const [carregando, setCarregando] = useState(false);
 
     function aoMudar(e) {
         setDados((atual) => ({ ...atual, [e.target.name]: e.target.value }));
     }
 
-    function aoEnviar(e) {
+    async function aoEnviar(e) {
         e.preventDefault();
         setErro('');
-        setSucesso(false);
+        setSucesso('');
 
         if (dados.senha.length < 8) {
             setErro('A senha deve ter pelo menos 8 caracteres.');
             return;
         }
 
-        // TODO: enviar para a API (usuarioService.criar(dados))
-        setSucesso(true);
-        setDados(dadosVazios);
+        setCarregando(true);
+        try {
+            await cadastrar(dados);
+            setSucesso('Solicitação recebida! Confira seu e-mail para confirmar a conta antes de entrar.');
+            setDados(dadosVazios);
+        } catch (erro) {
+            setErro(mensagemErro(erro));
+        } finally {
+            setCarregando(false);
+        }
     }
 
     return (
@@ -37,20 +47,20 @@ function FormularioCadastro() {
                     </div>
 
                     <div className="input-box">
-                        <label>Nome Completo</label>
-                        <input type="text" name="nome" placeholder="Seu nome"
+                        <label htmlFor="cadastro-nome">Nome Completo</label>
+                        <input type="text" id="cadastro-nome" name="nome" placeholder="Seu nome"
                             value={dados.nome} onChange={aoMudar} required />
                     </div>
 
                     <div className="input-box">
-                        <label>E-mail</label>
-                        <input type="email" name="email" placeholder="seuemail@exemplo.com"
+                        <label htmlFor="cadastro-email">E-mail</label>
+                        <input type="email" id="cadastro-email" name="email" placeholder="seuemail@exemplo.com"
                             value={dados.email} onChange={aoMudar} required />
                     </div>
 
                     <div className="input-box">
-                        <label>Perfil Acadêmico</label>
-                        <select name="perfil" required className="select-perfil"
+                        <label htmlFor="cadastro-perfil">Perfil Acadêmico</label>
+                        <select id="cadastro-perfil" name="perfil" required className="select-perfil"
                             value={dados.perfil} onChange={aoMudar}>
                             <option value="" disabled>Selecione seu objetivo...</option>
                             <option value="graduacao">Graduação no Exterior</option>
@@ -61,15 +71,15 @@ function FormularioCadastro() {
                     </div>
 
                     <div className="input-box">
-                        <label>Senha</label>
-                        <input type="password" name="senha" placeholder="Crie uma senha forte"
+                        <label htmlFor="cadastro-senha">Senha</label>
+                        <input type="password" id="cadastro-senha" name="senha" placeholder="Crie uma senha forte"
                             value={dados.senha} onChange={aoMudar} required />
                     </div>
 
                     {erro && <p className="msg-erro" role="alert">{erro}</p>}
-                    {sucesso && <p className="msg-sucesso">Conta criada! Agora é só entrar.</p>}
+                    {sucesso && <p className="msg-sucesso">{sucesso}</p>}
 
-                    <button type="submit" className="btn btn-primary">Criar Minha Conta →</button>
+                    <button type="submit" className="btn btn-primary" disabled={carregando}>{carregando ? 'Criando conta...' : 'Criar Minha Conta →'}</button>
                 </form>
             </div>
         </>

@@ -182,3 +182,13 @@
     border-right-color: var(--border);
   }
 }
+
+.aviso-sistema {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background: white;
+  color: #222;
+  border-radius: 16px;
+}
+.aviso-sistema input, .aviso-sistema button { display: block; margin-top: 1rem; padding: .8rem; }
