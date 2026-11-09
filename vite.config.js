@@ -2,7 +2,7 @@ import { defineConfig } from 'vite'
 import react, { reactCompilerPreset } from '@vitejs/plugin-react'
 import babel from '@rolldown/plugin-babel'
 
-// https://vite.dev/config/
+// Configuração do servidor e da compilação do Vite.
 export default defineConfig({
   plugins: [
     react(),

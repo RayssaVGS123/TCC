@@ -1,6 +1,6 @@
 import '../styles/CardUniversidades.css'
 
-function CardUniversidade({ universidade, favoritada, onFavoritar }) {
+function CardUniversidade({ universidade, favoritada, onFavoritar, salvando }) {
   return (
     <article className="universidade-card">
       <div className="universidade-imagem-wrap">
@@ -12,6 +12,7 @@ function CardUniversidade({ universidade, favoritada, onFavoritar }) {
         />
         <button
           type="button"
+          disabled={salvando}
           className={`favoritar-btn ${favoritada ? 'favoritada' : ''}`}
           onClick={() => onFavoritar(universidade.id)}
           aria-label={favoritada ? `Remover ${universidade.nome} dos favoritos` : `Adicionar ${universidade.nome} aos favoritos`}
