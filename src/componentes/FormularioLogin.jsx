@@ -1,13 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocalStorage } from '../hooks/useLocalStorage';
-import { entrarComGoogle } from '../services/firebaseAuth.js'
+import { entrar, entrarComProvedor, solicitarRecuperacao } from '../services/authService'
+import { mensagemErro } from '../lib/supabase'
 import '../styles/FormularioLogin.css';
 
-function FormularioLogin({ onLogin }) {
+function FormularioLogin() {
     const [email, setEmail] = useLocalStorage('malagon-email', '');
     const [senha, setSenha] = useState('');
     const [erro, setErro] = useState('');
     const [carregando, setCarregando] = useState(false);
+    const [aviso, setAviso] = useState('');
 
     const campoEmail = useRef(null);
 
@@ -26,35 +28,40 @@ function FormularioLogin({ onLogin }) {
 
         setCarregando(true);
         try {
-            // TODO: trocar pela chamada real da API de login
-            await new Promise((resolve) => setTimeout(resolve, 500));
-            onLogin();
+            await entrar(email, senha);
         } catch (e) {
-            setErro(e.message || 'Não foi possível entrar. Tente novamente.');
+            setErro(mensagemErro(e));
         } finally {
             setCarregando(false);
         }
     }
 
-    async function aoEntrarComGoogle() {
+    async function aoEntrarComProvedor(provedor) {
         setErro('');
         setCarregando(true);
-
         try {
-            await entrarComGoogle();
-            onLogin();
-        } catch (e) {
-            const mensagens = {
-                'firebase/config-missing': e.message,
-                'auth/unauthorized-domain': 'Este domínio não está autorizado no Firebase Authentication.',
-                'auth/operation-not-allowed': 'Ative o provedor Google em Authentication > Sign-in method no Firebase.',
-                'auth/popup-blocked': 'O navegador bloqueou a janela de login. Permita pop-ups e tente novamente.',
-                'auth/popup-closed-by-user': 'A janela de login foi fechada antes da conclusão.',
-                'auth/cancelled-popup-request': 'Já existe uma solicitação de login aberta.',
-                'auth/network-request-failed': 'Falha de conexão. Verifique a internet e tente novamente.',
-                'auth/invalid-api-key': 'A chave da API do Firebase está inválida. Confira o arquivo .env.local.'
-            };
-            setErro(mensagens[e.code] || 'Não foi possível entrar com Google. Verifique a configuração do Firebase.');
+            await entrarComProvedor(provedor);
+        } catch (erro) {
+            setErro(mensagemErro(erro));
+        } finally {
+            setCarregando(false);
+        }
+    }
+
+    async function aoRecuperarSenha(evento) {
+        evento.preventDefault();
+        setErro('');
+        setAviso('');
+        if (!email.trim()) {
+            setErro('Preencha seu e-mail para recuperar a senha.');
+            return;
+        }
+        setCarregando(true);
+        try {
+            await solicitarRecuperacao(email);
+            setAviso('Se houver uma conta com esse e-mail, você receberá um link para redefinir a senha.');
+        } catch (erro) {
+            setErro(mensagemErro(erro));
         } finally {
             setCarregando(false);
         }
@@ -70,8 +77,9 @@ function FormularioLogin({ onLogin }) {
                     </div>
 
                     <div className="input-box">
-                        <label>E-mail Acadêmico ou Pessoal</label>
+                        <label htmlFor="login-email">E-mail Acadêmico ou Pessoal</label>
                         <input
+                            id="login-email"
                             ref={campoEmail}
                             type="email"
                             placeholder="seuemail@exemplo.com"
@@ -83,10 +91,11 @@ function FormularioLogin({ onLogin }) {
 
                     <div className="input-box">
                         <div className="label-row">
-                            <label>Senha</label>
-                            <a href="#" className="esqueci-link">Esqueceu a senha?</a>
+                            <label htmlFor="login-senha">Senha</label>
+                            <a href="#" className="esqueci-link" onClick={aoRecuperarSenha}>Esqueceu a senha?</a>
                         </div>
                         <input
+                            id="login-senha"
                             type="password"
                             placeholder="••••••••"
                             value={senha}
@@ -95,24 +104,19 @@ function FormularioLogin({ onLogin }) {
                         />
                     </div>
 
+                    {aviso && <p role="status">{aviso}</p>}
                     {erro && <p className="msg-erro" role="alert">{erro}</p>}
 
                     <button type="submit" className="btn btn-primary" disabled={carregando}>
                         {carregando ? 'Entrando...' : 'Entrar na Plataforma →'}
                     </button>
 
-                    <div className="divisor">
-                        <span>ou entre com</span>
-                    </div>
-
-                    <div className="social-login">
-                        <button type="button" className="btn-social" onClick={aoEntrarComGoogle} disabled={carregando}>
-                            <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt=""/> {carregando ? 'Conectando...' : 'Google'}
-                        </button>
-                        <button type="button" className="btn-social">
-                            <img src="https://www.svgrepo.com/show/512317/github-142.svg" alt="GitHub"/> GitHub
-                        </button>
-                    </div>
+                    {(import.meta.env.VITE_SUPABASE_GOOGLE_ENABLED === 'true' || import.meta.env.VITE_SUPABASE_GITHUB_ENABLED === 'true') && (
+                        <div className="social-login">
+                            {import.meta.env.VITE_SUPABASE_GOOGLE_ENABLED === 'true' && <button type="button" className="btn-social" onClick={() => aoEntrarComProvedor('google')} disabled={carregando}>Google</button>}
+                            {import.meta.env.VITE_SUPABASE_GITHUB_ENABLED === 'true' && <button type="button" className="btn-social" onClick={() => aoEntrarComProvedor('github')} disabled={carregando}>GitHub</button>}
+                        </div>
+                    )}
                 </form>
             </div>
         </>

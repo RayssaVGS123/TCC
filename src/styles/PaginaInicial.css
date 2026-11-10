@@ -8,7 +8,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Banner / Hero Section */
+/* Seção de destaque */
 .hero-banner {
   background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
   color: #ffffff;
@@ -31,7 +31,7 @@
   margin-bottom: 20px;
 }
 
-/* Grelha de Destaques / Cards */
+/* Grade de cartões de destaque */
 .secao-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1rem));

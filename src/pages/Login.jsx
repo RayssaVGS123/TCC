@@ -4,13 +4,13 @@ import FormularioLogin from '../componentes/FormularioLogin.jsx'
 import FormularioCadastro from '../componentes/FormularioCadastro.jsx'
 import PainelDeslizanteTransicao from '../componentes/PainelDeslizanteTransicao.jsx'
 
-function Login({ onLogin }) {
+function Login() {
   const [isCadastro, setIsCadastro] = useState(false)
 
   return (
     <div className={`container${isCadastro ? ' active' : ''}`}>
       <CabecalhoMacOSCard />
-      <FormularioLogin onLogin={onLogin} />
+      <FormularioLogin />
       <FormularioCadastro />
       <PainelDeslizanteTransicao
         onShowCadastro={() => setIsCadastro(true)}
