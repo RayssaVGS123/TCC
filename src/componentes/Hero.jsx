@@ -19,28 +19,29 @@ function Hero() {
 
     return (
     <section className="hero">
-            {fundos.map((imagem, i) => (
-                <div
-                    key={i}
-                    className={`bg${i === indice ? ' ativo' : ''}`}
-                    style={{ backgroundImage: `url(${imagem})` }}
-                ></div>
-            ))}
+      {fundos.map((imagem, i) => (
+        <div
+          key={i}
+          className={`bg${i === indice ? ' ativo' : ''}`}
+          style={{ backgroundImage: `url(${imagem})` }}
+        ></div>
+      ))}
+
       <div className="hero-overlay"></div>
 
+      <div className="hero-container">
+        <div className="hero-content">
+          <span className="tag-badge">IA + Intercâmbio</span>
+          <h1>Planeje seu <span>Intercâmbio</span> com Inteligência</h1>
+          <p>Simule custos, organize vistos e encontre sua rota acadêmica em qualquer lugar do mundo com total segurança e precisão.</p>
 
-            <div className="hero-content">
-              <span className="tag-badge">IA + Intercâmbio</span>
-              <h1>Planeje seu <span>Intercâmbio</span> com Inteligência</h1>
-                <p>Simule custos, organize vistos e encontre sua rota acadêmica em qualquer lugar do mundo com total segurança e precisão.</p>
+          <div className="botoes">
+            <a href="/" className="btn-primary">Começar Simulação</a>
+            <button className="btn-secondary" id="btnVerMais">Saiba Mais ↓</button>
+          </div>
+        </div>
 
-                <div className="botoes">
-                  <a href="/" className="btn-primary">Começar Simulação</a>
-                  <button className="btn-secondary" id="btnVerMais">Saiba Mais ↓</button>
-                </div>
-            </div>
-
-            <div className="hero-dashboard">
+        <div className="hero-dashboard">
           <div className="dash-card">
             <div className="card-topo">
               <span className="icone orange">📊</span>
@@ -73,9 +74,8 @@ function Hero() {
             <div className="line green"></div>
           </div>
         </div>
-      
-        </section>
-
+      </div>
+    </section>
     );
 
 }
