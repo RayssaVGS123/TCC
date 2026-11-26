@@ -1,9 +1,11 @@
+// IMPORTAÇÕES
 import { useState } from 'react'
 import CabecalhoMacOSCard from '../componentes/CabecalhoMacOSCard.jsx'
 import FormularioLogin from '../componentes/FormularioLogin.jsx'
 import FormularioCadastro from '../componentes/FormularioCadastro.jsx'
 import PainelDeslizanteTransicao from '../componentes/PainelDeslizanteTransicao.jsx'
 
+// FUNÇÃO LOGIN
 function Login() {
   const [isCadastro, setIsCadastro] = useState(false)
 

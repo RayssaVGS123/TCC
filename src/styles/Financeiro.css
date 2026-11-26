@@ -1,0 +1,344 @@
+.financeiro-pagina {
+  min-height: 100vh;
+  padding: 85px clamp(24px, 7.7vw, 100px) 48px;
+  color: #f7f7f7;
+}
+
+.financeiro-cabecalho {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.financeiro-sobretitulo {
+  color: #ff7900;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+}
+
+.financeiro-cabecalho h1,
+.localizacao-intro h1 {
+  margin-top: 12px;
+  color: #fff;
+  font-size: clamp(2rem, 3vw, 2.4rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.cartao-cambio {
+  display: flex;
+  min-width: 180px;
+  min-height: 109px;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 16px 18px;
+  border: 1px solid #292929;
+  border-radius: 12px;
+  background: #141414;
+}
+
+.cartao-cambio span,
+.cartao-cambio small {
+  color: #87909c;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+}
+
+.cartao-cambio strong {
+  color: #ff7900;
+  font-size: 1.4rem;
+}
+
+.cartao-cambio small {
+  letter-spacing: 0;
+}
+
+.seletor-pais {
+  display: grid;
+  grid-template-columns: auto minmax(180px, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 16px 22px;
+  border: 1px solid #292929;
+  border-radius: 13px;
+  background: #141414;
+}
+
+.seletor-pais label {
+  color: #d0d0d0;
+  font-size: 0.85rem;
+}
+
+.seletor-pais select {
+  width: 100%;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 122, 0, 0.4);
+  border-radius: 8px;
+  background: #202020;
+  color: #fff;
+  font: inherit;
+}
+
+.seletor-pais select:focus-visible,
+.campo-cidade input:focus-visible,
+.controle-simulador input:focus-visible,
+.botao-trocar:focus-visible,
+.botao-confirmar-localizacao:focus-visible {
+  outline: 2px solid #ff7900;
+  outline-offset: 3px;
+}
+
+.fonte-dados {
+  color: #656b74;
+  font-size: 0.72rem;
+  white-space: nowrap;
+}
+
+.financeiro-grade {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 24px;
+}
+
+.financeiro-card {
+  min-width: 0;
+  padding: 28px;
+  border: 1px solid #292929;
+  border-radius: 16px;
+  background: #141414;
+}
+
+.financeiro-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.financeiro-card .financeiro-sobretitulo {
+  color: #88919d;
+}
+
+.financeiro-etiqueta,
+.status-calculo {
+  padding: 5px 12px;
+  border: 1px solid rgba(255, 122, 0, 0.3);
+  border-radius: 999px;
+  background: rgba(255, 122, 0, 0.1);
+  color: #ff7900;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.lista-despesas {
+  list-style: none;
+}
+
+.lista-despesas li,
+.despesa-nome {
+  display: flex;
+  align-items: center;
+}
+
+.lista-despesas li {
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 2px;
+  border-bottom: 1px solid #252525;
+  color: #f4f4f4;
+  font-size: 0.9rem;
+}
+
+.despesa-nome {
+  gap: 14px;
+}
+
+.despesa-nome > span {
+  width: 22px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.lista-despesas li strong {
+  white-space: nowrap;
+}
+
+.financeiro-total {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 18px;
+  color: #c7c7c7;
+  font-size: 0.88rem;
+}
+
+.financeiro-total strong {
+  color: #ff7900;
+  white-space: nowrap;
+}
+
+.financeiro-fonte {
+  margin-top: 16px;
+  color: #78808a;
+  font-size: 0.72rem;
+}
+
+.status-calculo {
+  border-color: rgba(59, 190, 83, 0.2);
+  background: rgba(59, 190, 83, 0.09);
+  color: #54c46a;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.status-calculo span {
+  font-size: 0.55rem;
+}
+
+.simulador-card h2 {
+  margin: -10px 0 26px;
+  color: #fff;
+  font-size: 1.12rem;
+  font-weight: 600;
+}
+
+.controle-simulador {
+  display: block;
+  margin-top: 22px;
+}
+
+.controle-titulo,
+.limites-controle {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.controle-titulo {
+  color: #c4c4c4;
+  font-size: 0.86rem;
+}
+
+.controle-titulo strong {
+  color: #fff;
+  font-size: 1rem;
+}
+
+.controle-titulo strong.duracao-valor {
+  color: #ff7900;
+}
+
+.controle-simulador input[type='range'] {
+  display: block;
+  width: 100%;
+  height: 5px;
+  margin: 22px 0 10px;
+  border-radius: 999px;
+  appearance: none;
+  background: linear-gradient(to right, #ff7900 var(--progresso), #343434 var(--progresso));
+  cursor: pointer;
+}
+
+.controle-simulador input[type='range']::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  appearance: none;
+  background: #ff7900;
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.18);
+}
+
+.controle-simulador input[type='range']::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #ff7900;
+  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.18);
+}
+
+.limites-controle {
+  color: #707780;
+  font-size: 0.7rem;
+}
+
+.resultado-simulacao {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5px 12px;
+  margin-top: 28px;
+  padding: 16px;
+  border: 1px solid #333;
+  border-radius: 10px;
+  font-size: 0.82rem;
+}
+
+.resultado-simulacao strong {
+  color: #ff9a3e;
+}
+
+.resultado-simulacao small {
+  grid-column: 1 / -1;
+  color: #8a8a8a;
+}
+
+.resultado-positivo {
+  border-color: rgba(59, 190, 83, 0.25);
+}
+
+.resultado-positivo > span {
+  color: #69d27d;
+}
+
+.resultado-atencao {
+  border-color: rgba(255, 122, 0, 0.3);
+}
+
+.resultado-atencao > span {
+  color: #ffad68;
+}
+
+@media (max-width: 800px) {
+  .financeiro-pagina {
+    padding-top: 110px;
+  }
+
+  .financeiro-grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .financeiro-cabecalho {
+    align-items: flex-start;
+  }
+
+  .cartao-cambio {
+    min-width: 130px;
+    min-height: 90px;
+    padding: 12px;
+  }
+
+  .seletor-pais {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    padding: 16px;
+  }
+
+  .fonte-dados {
+    white-space: normal;
+  }
+
+  .financeiro-card {
+    padding: 20px;
+  }
+}

@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { sair } from '../services/authService'
 import Hero from "../componentes/Hero";
 import Universidades from './universidades.jsx'
+import Financeiro from './Financeiro.jsx'
+import Localizacao from './Localizacao.jsx'
 import '../styles/PaginaInicial.css'
 
 function PaginaInicial({ usuario }) {
@@ -43,11 +45,30 @@ function PaginaInicial({ usuario }) {
           >
             Universidades
           </button>
+          <button
+            type="button"
+            className={paginaSelecionada === 'financeiro' ? 'ativo' : ''}
+            aria-current={paginaSelecionada === 'financeiro' ? 'page' : undefined}
+            onClick={() => setPaginaSelecionada('financeiro')}
+          >
+            Financeiro
+          </button>
+          <button
+            type="button"
+            className={paginaSelecionada === 'localizacao' ? 'ativo' : ''}
+            aria-current={paginaSelecionada === 'localizacao' ? 'page' : undefined}
+            onClick={() => setPaginaSelecionada('localizacao')}
+          >
+            Localização
+          </button>
           <button type="button" onClick={aoSair} disabled={saindo}>{saindo ? 'Saindo...' : 'Sair'}</button>
         </nav>
       </header>
       {erro && <p role="alert">{erro}</p>}
-      {paginaSelecionada === 'inicio' ? <Hero /> : <Universidades usuarioId={usuario.id} />}
+      {paginaSelecionada === 'inicio' && <Hero />}
+      {paginaSelecionada === 'universidades' && <Universidades usuarioId={usuario.id} />}
+      {paginaSelecionada === 'financeiro' && <Financeiro />}
+      {paginaSelecionada === 'localizacao' && <Localizacao />}
     </div>
   )
 
