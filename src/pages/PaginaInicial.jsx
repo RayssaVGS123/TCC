@@ -1,3 +1,4 @@
+// Imports
 import { useState } from 'react'
 import { sair } from '../services/authService'
 import Hero from "../componentes/Hero";

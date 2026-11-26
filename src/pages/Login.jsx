@@ -9,8 +9,9 @@ import PainelDeslizanteTransicao from '../componentes/PainelDeslizanteTransicao.
 function Login() {
   const [isCadastro, setIsCadastro] = useState(false)
 
-  return (
+  return (//Define o que será exibido na tela
     <div className={`container${isCadastro ? ' active' : ''}`}>
+      {/* Componentes */}
       <CabecalhoMacOSCard />
       <FormularioLogin />
       <FormularioCadastro />
