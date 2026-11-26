@@ -111,12 +111,18 @@ function FormularioLogin() {
                         {carregando ? 'Entrando...' : 'Entrar na Plataforma →'}
                     </button>
 
-                    {(import.meta.env.VITE_SUPABASE_GOOGLE_ENABLED === 'true' || import.meta.env.VITE_SUPABASE_GITHUB_ENABLED === 'true') && (
-                        <div className="social-login">
-                            {import.meta.env.VITE_SUPABASE_GOOGLE_ENABLED === 'true' && <button type="button" className="btn-social" onClick={() => aoEntrarComProvedor('google')} disabled={carregando}>Google</button>}
-                            {import.meta.env.VITE_SUPABASE_GITHUB_ENABLED === 'true' && <button type="button" className="btn-social" onClick={() => aoEntrarComProvedor('github')} disabled={carregando}>GitHub</button>}
-                        </div>
-                    )}
+                    <div className="divisor"><span>ou entre com</span></div>
+                    <div className="social-login">
+                        <button
+                            type="button"
+                            className="btn-social"
+                            onClick={() => aoEntrarComProvedor('google')}
+                            disabled={carregando}
+                        >
+                            Entrar com Google
+                        </button>
+                        {import.meta.env.VITE_SUPABASE_GITHUB_ENABLED === 'true' && <button type="button" className="btn-social" onClick={() => aoEntrarComProvedor('github')} disabled={carregando}>GitHub</button>}
+                    </div>
                 </form>
             </div>
         </>

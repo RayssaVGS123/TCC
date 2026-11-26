@@ -29,9 +29,11 @@ Com confirmação de e-mail ativa, o usuário deve abrir o link recebido antes d
 
 O link **Esqueceu a senha?** usa o e-mail preenchido. O link recebido abre o formulário de nova senha na aplicação. Cadastre corretamente a URL de redirecionamento para esse fluxo funcionar.
 
-## Login social opcional
+## Login com Google
 
-Google e GitHub usam o próprio Supabase Auth. Os botões ficam ocultos inicialmente. Para ativá-los, configure o respectivo provedor no Supabase, com credenciais OAuth próprias e a callback URL indicada pelo painel; depois defina `VITE_SUPABASE_GOOGLE_ENABLED=true` ou `VITE_SUPABASE_GITHUB_ENABLED=true` e reinicie/republique. Não é necessário Firebase.
+O botão **Entrar com Google** chama `entrarComProvedor('google')`, que usa `supabase.auth.signInWithOAuth`. Para concluir a integração, preencha Client ID e Client Secret do cliente OAuth Web do Google em Authentication > Sign In / Providers > Google no Supabase. Cadastre no Google a callback `https://xjkyzkmhawxwjgscugkn.supabase.co/auth/v1/callback` e configure as URLs de retorno da aplicação no Supabase. O segredo deve ficar somente no painel do Supabase, nunca no frontend.
+
+O botão GitHub continua opcional, controlado por `VITE_SUPABASE_GITHUB_ENABLED`. A variável antiga `VITE_SUPABASE_GOOGLE_ENABLED` não controla mais a visibilidade do botão Google.
 
 ## O que foi conectado
 
